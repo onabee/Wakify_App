@@ -36,9 +36,14 @@ h1 {
 	font-size: 20px;
 }
 
-.current-time {
-	top: 200px;
+#clock {
+/*	top: 200px;*/
 	height: 150px;
+	width: 700px;
+	margin: auto;
+	font-family: 'Oswald', sans-serif;
+	font-size: 100px;
+	color: #79CC5E;
 }
 
 .alarm-options {
