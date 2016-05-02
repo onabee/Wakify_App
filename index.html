@@ -5,64 +5,38 @@
  	<link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 	<title>Wakify</title>
  	<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+ 	<script type='text/javascript'src='js/timepicki.js'></script>
 	<script type="text/javascript" src="main.js"></script>
+	<link rel='stylesheet' type='text/css'href='css/timepicki.css'/>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
-
 	<div class="heading">
-
 		<p id="logo" src="">Wakify</p>
-
 	</div>
-
 
 
 	<div class="main">
-
 		<h1>Current Time:</h1>
 		<div id="clock">
-			<!-- <div class="time-field">
-				<div class="hours">
-				</div>
-				<div class="minutes">
-				</div>
-			</div>
-			<div class="settings">
-				<button>am</button>
-				<button>pm</button>
-				<button>Select Timezone</button>
-			</div> -->
 		</div>
 
+		<h1>Set an Alarm:</h1>
 		<div class="alarm-options">
-			<h1>Set an Alarm:</h1>
-			<div class="time-field">
-				<div class="hours">
-				</div>
-				<div class="minutes">
-				</div>
-			</div>
-			<div class="settings">
-				<button>am</button>
-				<button>pm</button>
-				<button>Select Timezone</button>
-			</div>
-			<button class="set-alarm">Submit</button>
-		</div>
+			<!-- Select a time: <input type="time" name="alarm_time"></input> -->
+			<!-- <input type="">Select Timezone</input> -->
+			<input id='timepicker' type='text'name='timepicker'/>
 
+			<input id='reset' type="reset" value="Reset"></input>
+			<input type="submit" value="Submit" class="set-alarm"></input>
+		</div> <!-- ends alarm-options -->
+
+		<h1>YOUR ALARM:</h1>
 		<div class="current-alarm">
-			<h1>YOUR ALARM:</h1>
-			<div class="time-field">
-				<div class="hours">
-				</div>
-				<div class="minutes">
-				</div>
-			</div>
-		</div>
-
-	</div>
+			
+		</div> <!-- ends current-alarm -->
+	</div> <!-- ends main -->
 
 
 </body>

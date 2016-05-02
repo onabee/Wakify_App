@@ -8,7 +8,22 @@ $(document).ready(function(){
 		var hours = currentTime.getHours();
 		var minutes = currentTime.getMinutes();
 		var seconds = currentTime.getSeconds();
-    // if the hours/minutes/seconds are less than 10, put a 0 in front of them
+
+		// setting am/pm. default will be am, changes to pm after noon
+		var amPm = "am";
+
+		// if hours are past 12 (noon), subtract 12 and change amPm variable to PM
+		if (hours > 12) {
+			hours = hours - 12;
+			amPm = "pm";
+		};
+
+		// show 12 instead of 0 (midnight)
+		if (hours === 0) {
+			hours = 12;
+		};
+
+    	// if the hours/minutes/seconds are less than 10, put a 0 in front of them
 		if (hours < 10) {
 			hours = "0" + hours;
 		};
@@ -19,14 +34,21 @@ $(document).ready(function(){
 			seconds = "0" + seconds;
 		};
 		var clock = document.getElementById('clock');
-		// minutes = whatTime(minutes);
-		// seconds = whatTime(seconds);
-		clock.innerText = hours + ":" + minutes + ":" + seconds;
+		clock.innerText = hours + ":" + minutes + ":" + seconds + amPm;
 		setInterval(updateTime, 500);
 
 	};
 
+	var resetAlarm = function(){
+		var resetBtn = $('#reset');
+		var pickTime = $('#timepicker');
+		
+	};
+
 	updateTime();
+
+	$('#timepicker').timepicki();
+	$('#reset').on('click', resetAlarm);
 
   
 });
