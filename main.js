@@ -39,15 +39,23 @@ $(document).ready(function(){
 
 	};
 
+	var pickTime = function(){
+		$('#time').combodate({
+			firstItem: 'name',
+			minuteStep: 1
+		});
+	};
+
+	var setAlarm = function(){
+
+	};
+
 	var resetAlarm = function(){
-		var resetBtn = $('#reset');
-		var pickTime = $('#timepicker');
 		
 	};
 
 	updateTime();
 
-	$('#timepicker').timepicki();
 	$('#reset').on('click', resetAlarm);
 
   
