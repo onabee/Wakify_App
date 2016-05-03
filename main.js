@@ -42,14 +42,22 @@ $(document).ready(function(){
 	// this creates the format in the dropdown
 	var pickTime = $(function(){
 		$('#time').combodate({
+			value: new Date(),
 			firstItem: 'name',
 			minuteStep: 1
 		});
 	});
 
+	var getAlarmTime = function(){
+		var alarmTime = [];
+		var time = document.getElementById("time");
+		alarmTime.push(time.value)
+	}
+
 	// want to take the values chosen in the input and show it in the DOM under "Your alarm:"
 	var setAlarm = function(){
 		var currentAlarm = document.getElementByClass('current-alarm');
+		currentAlarm.value = pickTime.value;
 		currentAlarm.innerText = hours + ":" + minutes + amPm;
 	};
 
