@@ -39,19 +39,19 @@ $(document).ready(function(){
 
 	};
 
-	var pickTime = function(){
+	$(function(){
 		$('#time').combodate({
 			firstItem: 'name',
 			minuteStep: 1
 		});
-	};
+	});
 
 	var setAlarm = function(){
 
 	};
 
 	var resetAlarm = function(){
-		
+
 	};
 
 	updateTime();
