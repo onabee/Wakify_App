@@ -47,11 +47,16 @@ $(document).ready(function(){
 	});
 
 	var setAlarm = function(){
-		$('#time').combodate(getValue, {
-			moment().minutes();
-			moment().hours();
-			
-		})
+		// $('#time').combodate(getValue, {
+			// format: moment().creationData() === {
+			// 	hour: moment().hours(),
+			// 	minute: moment().minutes()
+			// }
+
+			// moment().minutes();
+			// moment().hours();
+
+		// });
 	};
 
 	updateTime();
