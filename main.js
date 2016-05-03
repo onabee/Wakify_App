@@ -39,29 +39,21 @@ $(document).ready(function(){
 
 	};
 
-	$(function(){
+	// this creates the format in the dropdown
+	var pickTime = $(function(){
 		$('#time').combodate({
 			firstItem: 'name',
 			minuteStep: 1
 		});
 	});
 
+	// want to take the values chosen in the input and show it in the DOM under "Your alarm:"
 	var setAlarm = function(){
-		// $('#time').combodate(getValue, {
-			// format: moment().creationData() === {
-			// 	hour: moment().hours(),
-			// 	minute: moment().minutes()
-			// }
-
-			// moment().minutes();
-			// moment().hours();
-
-		// });
+		var currentAlarm = document.getElementByClass('current-alarm');
+		currentAlarm.innerText = hours + ":" + minutes + amPm;
 	};
 
 	updateTime();
-
-	$('#set-alarm').submit(setAlarm());
 
   
 });
