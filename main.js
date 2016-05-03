@@ -47,16 +47,16 @@ $(document).ready(function(){
 	});
 
 	var setAlarm = function(){
-
-	};
-
-	var resetAlarm = function(){
-
+		$('#time').combodate(getValue, {
+			moment().minutes();
+			moment().hours();
+			
+		})
 	};
 
 	updateTime();
 
-	$('#reset').on('click', resetAlarm);
+	$('#set-alarm').submit(setAlarm());
 
   
 });
