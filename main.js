@@ -2,6 +2,11 @@ console.log("linked!");
 
 $(document).ready(function(){
 
+	var logo = $('#logo');
+	var $clock = $('#clock');
+	var $alarmForm = $('#set-alarm');
+	var $currentAlarm = $('#current-alarm');
+
 	var updateTime = function(){
 
 		var currentTime = new Date();
@@ -33,14 +38,13 @@ $(document).ready(function(){
 		if (seconds < 10) {
 			seconds = "0" + seconds;
 		};
-		var clock = document.getElementById('clock');
 		clock.innerText = hours + ":" + minutes + ":" + seconds + amPm;
 		setInterval(updateTime, 500);
 
 	};
 
 	// this creates the format in the dropdown
-	var pickTime = $(function(){
+	$(function(){
 		$('#time').combodate({
 			value: new Date(),
 			firstItem: 'name',
@@ -48,17 +52,41 @@ $(document).ready(function(){
 		});
 	});
 
-	var getAlarmTime = function(){
-		var alarmTime = [];
-		var time = document.getElementById("time");
-		alarmTime.push(time.value)
-	}
-
 	// want to take the values chosen in the input and show it in the DOM under "Your alarm:"
-	var setAlarm = function(){
-		var currentAlarm = document.getElementByClass('current-alarm');
-		currentAlarm.value = pickTime.value;
-		currentAlarm.innerText = hours + ":" + minutes + amPm;
+	
+	// get date from alarm form
+	var getAlarmInput = function(){
+		var alarmTime = [];
+		var $timeInput = $('time');
+		var alarmInput = $alarmForm.serialize();
+		$currentAlarm.load(alarmInput);
+
+		alarmTime.push($timeInput.value)
+
+		$alarmForm.submit(function(){
+			$currentAlarm.load(alarmTime);
+		});
+		
+	};
+
+	// show date in current-alarm div
+	var showAlarm = function(){
+
+		$alarmForm.submit(function(){
+			$.ajax({
+				url: $alarmForm.attr('action'),
+				type: 'GET',
+				data: $alarmForm.serialize(),
+				success: function(response){
+					console.log('alarm set');
+					alert('You set your time as' + response);
+				}, 
+				error: function(){
+					console.log('alarm not set');
+				}
+			});
+			event.preventDefault();
+		});
 	};
 
 	updateTime();

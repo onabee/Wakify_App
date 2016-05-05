@@ -25,16 +25,16 @@
 
 		<h1>Set an Alarm:</h1>
 		<div class="alarm-options">
-			<form id="set-alarm" method="get">
+			<form id="set-alarm" method="POST" action="">
 				Select a time: 
 				<input type="text" id="time" data-format="hh:mm a" data-template="hh : mm a" name="datetime"></input>
 <!-- 				<input id='reset' type="reset" value="Reset"></input> -->
-				<input type="submit" value="Submit" onclick="setAlarm()"></input>
+				<input type="submit" id="submit" value="Submit"></input>
 			</form>
 		</div> <!-- ends alarm-options -->
 
 		<h1>YOUR ALARM:</h1>
-		<div class="current-alarm">
+		<div id="current-alarm">
 			
 		</div> <!-- ends current-alarm -->
 	</div> <!-- ends main -->
