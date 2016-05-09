@@ -4,9 +4,6 @@
 	<meta charset="UTF-8">
  	<link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
  	<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
- 	<script src="bower_components/moment/moment.js"></script>
- 	<script src="moment-with-locales.min.js"></script>
- 	<script src="combodate.js"></script>
 	<title>Wakify</title>
 	<script src="main.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -25,11 +22,20 @@
 
 		<h1>Set an Alarm:</h1>
 		<div class="alarm-options">
-			<form id="set-alarm" method="POST" action="">
-				Select a time: 
-				<input type="text" id="time" data-format="hh:mm a" data-template="hh : mm a" name="datetime"></input>
-<!-- 				<input id='reset' type="reset" value="Reset"></input> -->
-				<input type="submit" id="submit" value="Submit"></input>
+			<form id="set-alarm" name="alarm_list" action="">
+				<select name="hours" id="hourSelect">
+					<option value="title">Hours</option>
+				</select>
+				<span>:</span>
+				<select name="minutes" id="minuteSelect">
+					<option value="title">Minutes</option>
+				</select>
+				<select name="timeofday" id="ampmselect">
+					<option value="title">AM/PM</option>
+					<option value="am">am</option>
+					<option value="pm">pm</option>
+				</select>
+				<input type="submit" name="submit" id="submit-btn" value="Submit">
 			</form>
 		</div> <!-- ends alarm-options -->
 

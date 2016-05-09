@@ -5,10 +5,12 @@ $(document).ready(function(){
 	var logo = $('#logo');
 	var $clock = $('#clock');
 	var $alarmForm = $('#set-alarm');
-	var $currentAlarm = $('#current-alarm');
+	var $alarm = $('#current-alarm');
+
+
+	// SHOWING CURRENT TIME
 
 	var updateTime = function(){
-
 		var currentTime = new Date();
 		var hours = currentTime.getHours();
 		var minutes = currentTime.getMinutes();
@@ -38,56 +40,82 @@ $(document).ready(function(){
 		if (seconds < 10) {
 			seconds = "0" + seconds;
 		};
-		clock.innerText = hours + ":" + minutes + ":" + seconds + amPm;
+		// hourClass = $('<span>').addClass("hour").html(hours);
+		// minuteClass = $('<span>').addClass("minute").html(minutes);
+		// secondClass = $('<span>').addClass("second").html(seconds);
+		// timeOfDayClass = $('<span>').addClass("time-of-day").html(amPm);
+		// $clock.append(hourClass + minuteClass + secondClass + timeOfDayClass);
+		// hourClass.innerText = hours;
+		// minuteClass.innerText = minutes;
+		// secondClass.innerText = seconds;
+		// timeOfDayClass.innerText = amPm;
+		clock.innerHTML = hours + ":" + minutes + ":" + seconds + amPm;
 		setInterval(updateTime, 500);
-
 	};
 
-	// this creates the format in the dropdown
-	$(function(){
-		$('#time').combodate({
-			value: new Date(),
-			firstItem: 'name',
-			minuteStep: 1
+	// CREATING DROPDOWN MENUS
+
+	var $hourSelect = $('#hourSelect');
+	var hours = [];
+	var $minuteSelect = $('#minuteSelect');
+	var minutes = [];
+	var mOption = '';
+	var hOption = '';
+
+	// create array containing all hours
+	for (var i=1; i<13; i++){
+		if (i < 10){
+			i = "0" + i;
+		};
+		hours.push(i);
+	};
+
+	// loop through hours array, add each number as an option in select
+	for (var i=0; i<hours.length; i++){
+		hOption += '<option value="' + hours[i] + '">' + hours[i] + '</option>';
+	};
+	$hourSelect.append(hOption);
+
+	// first create array containing all minutes
+	for (var i=0; i<60; i++){
+		if (i < 10){
+			i = "0" + i;
+		};
+		minutes.push(i);
+	};
+
+	// loop through minutes array and add each number as an option in select
+	for (var i=0; i<minutes.length; i++){
+		mOption += '<option value="' + minutes[i] + '">' + minutes[i] + '</option>';
+	};
+	$minuteSelect.append(mOption);
+
+
+	// SETTING ALARM
+	$alarmForm.submit(function(event){
+		event.preventDefault();
+		// grab values from dropdowns
+		var alarmHours = $('#hourSelect option:selected').text();
+		var alarmMinutes = $('#minuteSelect option:selected').text();
+		var alarmTime = $('#ampmselect option:selected').text(); 
+		// format values 
+		var alarmSet = alarmHours + ":" + alarmMinutes + alarmTime;
+		$alarm.append(alarmSet);
+		// reset select boxes
+		$('select option').prop('selected', function(){
+			return this.defaultSelected;
 		});
 	});
 
-	// want to take the values chosen in the input and show it in the DOM under "Your alarm:"
-	
-	// get date from alarm form
-	var getAlarmInput = function(){
-		var alarmTime = [];
-		var $timeInput = $('time');
-		var alarmInput = $alarmForm.serialize();
-		$currentAlarm.load(alarmInput);
+	// When current time is same time as alarm, alert user and have alarm tone
+	// if ($clock.innerHTML == $alarm.innerHTML) {
+	// 	alert("Wake up!");
+	// };
 
-		alarmTime.push($timeInput.value)
+	// when alarm goes off, have option to stop alarm and snooze
 
-		$alarmForm.submit(function(){
-			$currentAlarm.load(alarmTime);
-		});
-		
-	};
+	// if there is a current alarm, disable selection boxes and notify user one is set
 
-	// show date in current-alarm div
-	var showAlarm = function(){
-
-		$alarmForm.submit(function(){
-			$.ajax({
-				url: $alarmForm.attr('action'),
-				type: 'GET',
-				data: $alarmForm.serialize(),
-				success: function(response){
-					console.log('alarm set');
-					alert('You set your time as' + response);
-				}, 
-				error: function(){
-					console.log('alarm not set');
-				}
-			});
-			event.preventDefault();
-		});
-	};
 
 	updateTime();
 

@@ -48,12 +48,16 @@ h1 {
 
 .alarm-options {
 	top: 350px;
-	height: 150px;
+	height: 100px;
 }
 
-.current-alarm {
-	top: 500px;
+#current-alarm {
 	height: 150px;
+	width: 700px;
+	margin: auto;
+	font-family: 'Oswald', sans-serif;
+	font-size: 100px;
+	color: #79CC5E;
 }
 
 .time-field {
