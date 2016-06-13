@@ -40,15 +40,6 @@ $(document).ready(function(){
 		if (seconds < 10) {
 			seconds = "0" + seconds;
 		};
-		// hourClass = $('<span>').addClass("hour").html(hours);
-		// minuteClass = $('<span>').addClass("minute").html(minutes);
-		// secondClass = $('<span>').addClass("second").html(seconds);
-		// timeOfDayClass = $('<span>').addClass("time-of-day").html(amPm);
-		// $clock.append(hourClass + minuteClass + secondClass + timeOfDayClass);
-		// hourClass.innerText = hours;
-		// minuteClass.innerText = minutes;
-		// secondClass.innerText = seconds;
-		// timeOfDayClass.innerText = amPm;
 		clock.innerHTML = hours + ":" + minutes + ":" + seconds + amPm;
 		setInterval(updateTime, 500);
 	};
@@ -88,6 +79,7 @@ $(document).ready(function(){
 	for (var i=0; i<minutes.length; i++){
 		mOption += '<option value="' + minutes[i] + '">' + minutes[i] + '</option>';
 	};
+
 	$minuteSelect.append(mOption);
 
 
@@ -97,20 +89,26 @@ $(document).ready(function(){
 		// grab values from dropdowns
 		var alarmHours = $('#hourSelect option:selected').text();
 		var alarmMinutes = $('#minuteSelect option:selected').text();
-		var alarmTime = $('#ampmselect option:selected').text(); 
-		// format values 
+		var alarmTime = $('#ampmselect option:selected').text();
+		// format values
 		var alarmSet = alarmHours + ":" + alarmMinutes + alarmTime;
 		$alarm.append(alarmSet);
 		// reset select boxes
 		$('select option').prop('selected', function(){
 			return this.defaultSelected;
 		});
+		$alarm.append($('<button id="clear">clear</button>'));
+		// when 'clear' button clicked, clear out alarm
+		$("button").on("click", function() {
+			$alarm.empty();
+			console.log('erhg');
+		});
 	});
 
 	// When current time is same time as alarm, alert user and have alarm tone
-	// if ($clock.innerHTML == $alarm.innerHTML) {
-	// 	alert("Wake up!");
-	// };
+	if ($clock.innerHTML == $alarm.innerHTML) {
+		alert("Wake up!");
+	};
 
 	// when alarm goes off, have option to stop alarm and snooze
 
@@ -119,5 +117,5 @@ $(document).ready(function(){
 
 	updateTime();
 
-  
+
 });
