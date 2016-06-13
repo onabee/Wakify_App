@@ -106,38 +106,42 @@ $(document).ready(function(){
 
 		// When current time is same time as alarm, alert user and have alarm tone
 		var now = new Date();
-		var currentHour = now.getHours();
-		var currentMinutes = now.getMinutes();
+		now = now.toTimeString();
+		nowHour = now.charAt(0) + now.charAt(1);
+		nowHour = parseInt(nowHour);
+		nowMinutes = now.charAt(3) + now.charAt(4);
+		nowMinutes = parseInt(nowMinutes);
 
 		// setting am/pm. default will be am, changes to pm after noon
 		var amPm = "am";
 
 		// if hours are past 12 (noon), subtract 12 and change amPm variable to PM
-		if (currentHour > 12) {
-			currentHour = currentHour - 12;
+		if (nowHour > 12) {
+			nowHour = nowHour - 12;
 			amPm = "pm";
 		};
 
 		// show 12 instead of 0 (midnight)
-		if (currentHour === 0) {
-			currentHour = 12;
+		if (nowHour === 0) {
+			nowHour = 12;
 		};
+
+		var time = nowHour + ":" + nowMinutes + amPm;
 
     	// if the hour/minutes are less than 10, put a 0 in front of them
-		if (currentHour < 10) {
-			currentHour = "0" + currentHour;
-		};
+		// if (nowHour < 10) {
+		// 	nowHour = "0" + nowHour;
+		// };
 
-		if (currentMinutes < 10) {
-			currentMinutes = "0" + currentMinutes;
-		};
+		// if (nowMinutes < 10) {
+		// 	nowMinutes = "0" + nowMinutes;
+		// };
 
-		if (currentMinutes === alarmMinutes) {
-			alert("Wake up!");
-			console.log('wake up!');
+		if (alarmHours === alarmSet) {
+		console.log("worked!");
 		};
-
 	});
+
 
 
 	// when alarm goes off, have option to stop alarm and snooze
