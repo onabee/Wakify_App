@@ -83,7 +83,7 @@ $(document).ready(function(){
 	$minuteSelect.append(mOption);
 
 
-	// SETTING ALARM
+	// ALARM
 	$alarmForm.submit(function(event){
 		event.preventDefault();
 		// grab values from dropdowns
@@ -98,21 +98,49 @@ $(document).ready(function(){
 			return this.defaultSelected;
 		});
 		$alarm.append($('<button id="clear">clear</button>'));
+
 		// when 'clear' button clicked, clear out alarm
 		$("button").on("click", function() {
 			$alarm.empty();
-			console.log('erhg');
 		});
+
+		// When current time is same time as alarm, alert user and have alarm tone
+		var now = new Date();
+		var currentHour = now.getHours();
+		var currentMinutes = now.getMinutes();
+
+		// setting am/pm. default will be am, changes to pm after noon
+		var amPm = "am";
+
+		// if hours are past 12 (noon), subtract 12 and change amPm variable to PM
+		if (currentHour > 12) {
+			currentHour = currentHour - 12;
+			amPm = "pm";
+		};
+
+		// show 12 instead of 0 (midnight)
+		if (currentHour === 0) {
+			currentHour = 12;
+		};
+
+    	// if the hour/minutes are less than 10, put a 0 in front of them
+		if (currentHour < 10) {
+			currentHour = "0" + currentHour;
+		};
+
+		if (currentMinutes < 10) {
+			currentMinutes = "0" + currentMinutes;
+		};
+
+		if (currentMinutes === alarmMinutes) {
+			alert("Wake up!");
+			console.log('wake up!');
+		};
+
 	});
 
-	// When current time is same time as alarm, alert user and have alarm tone
-	if ($clock.innerHTML == $alarm.innerHTML) {
-		alert("Wake up!");
-	};
 
 	// when alarm goes off, have option to stop alarm and snooze
-
-	// if there is a current alarm, disable selection boxes and notify user one is set
 
 
 	updateTime();
