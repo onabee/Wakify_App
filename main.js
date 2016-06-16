@@ -137,7 +137,7 @@ $(document).ready(function(){
 		// 	nowMinutes = "0" + nowMinutes;
 		// };
 
-		if (alarmHours === alarmSet) {
+		if (time === alarmSet) {
 		console.log("worked!");
 		};
 	});
